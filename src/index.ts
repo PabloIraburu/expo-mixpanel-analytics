@@ -1,6 +1,7 @@
-import { Platform, Dimensions, AsyncStorage } from "react-native";
+import { Platform, Dimensions } from "react-native";
 import Constants from "expo-constants";
 import { Buffer } from "buffer";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const { width, height } = Dimensions.get("window");
 
@@ -8,7 +9,21 @@ const MIXPANEL_API_URL = "https://api.mixpanel.com";
 const ASYNC_STORAGE_KEY = "mixpanel:super:props";
 const isIosPlatform = Platform.OS === "ios";
 
-export class ExpoMixpanelAnalytics {
+interface MixpanelAnalyticsMethods {
+  register(props: any): void;
+  track(name: string, props?: any): void;
+  identify(userId?: string): void;
+  reset(): void;
+  people_set(props: any): void;
+  people_set_once(props: any): void;
+  people_unset(props: any): void;
+  people_increment(props: any): void;
+  people_append(props: any): void;
+  people_union(props: any): void;
+  people_delete_user(): void;
+}
+
+export class ExpoMixpanelAnalytics implements MixpanelAnalyticsMethods {
   ready = false;
   token: string;
   userId?: string | null;
@@ -20,7 +35,7 @@ export class ExpoMixpanelAnalytics {
   screenSize?: string;
   deviceName?: string;
   platform?: string;
-  model?: string;
+  model?: string | null;
   osVersion: string | number;
   queue: any[];
   superProps: any = {};
@@ -59,14 +74,14 @@ export class ExpoMixpanelAnalytics {
         this.ready = true;
         this.identify(this.clientId);
         this._flush();
-      });
+      }).then();
     });
   }
 
-  register(props: any) {
+   register(props: any) {
     this.superProps = props;
     try {
-      AsyncStorage.setItem(ASYNC_STORAGE_KEY, JSON.stringify(props));
+       AsyncStorage.setItem(ASYNC_STORAGE_KEY, JSON.stringify(props)).then();
     } catch {}
   }
 
@@ -82,10 +97,10 @@ export class ExpoMixpanelAnalytics {
     this.userId = userId;
   }
 
-  reset() {
+   reset() {
     this.identify(this.clientId);
     try {
-      AsyncStorage.setItem(ASYNC_STORAGE_KEY, JSON.stringify({}));
+      AsyncStorage.setItem(ASYNC_STORAGE_KEY, JSON.stringify({})).then();
     } catch {}
   }
 
@@ -174,9 +189,9 @@ export class ExpoMixpanelAnalytics {
     return fetch(`${MIXPANEL_API_URL}/track/?data=${buffer}`);
   }
 
-  _pushProfile(data) {
-    data = new Buffer(JSON.stringify(data)).toString("base64");
-    return fetch(`${MIXPANEL_API_URL}/engage/?data=${data}`);
+  _pushProfile(data: Record<string, any>) {
+    const buffer = new Buffer(JSON.stringify(data)).toString("base64");
+    return fetch(`${MIXPANEL_API_URL}/engage/?data=${buffer}`);
   }
 }
 
