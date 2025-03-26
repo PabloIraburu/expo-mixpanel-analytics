@@ -29,7 +29,7 @@
   },
   "peerDependencies": {
     "expo-constants": "~16.0.2",
-    "react": "16.5.2",
+    "react": "18.2.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz"
   },
   "devDependencies": {
