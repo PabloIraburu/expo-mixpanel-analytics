@@ -27,7 +27,8 @@
   "dependencies": {
     "@react-native-async-storage/async-storage": "^2.1.2",
     "buffer": "^5.2.1",
-    "expo-constants": "~16.0.2"
+    "expo-constants": "~16.0.2",
+    "expo-device": "^7.0.2"
   },
   "peerDependencies": {
     "react": "18.2.0",
