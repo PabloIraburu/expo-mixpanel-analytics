@@ -1,5 +1,5 @@
 {
-  "name": "@pabloiraburu/expo-mixpanel-analytics",
+  "name": "@pablo-iraburu/expo-mixpanel-analytics",
   "version": "0.1.7",
   "description": "Mixpanel integration for use with React Native apps built on Expo.",
   "main": "dist/src/index.js",
