@@ -28,7 +28,7 @@
     "buffer": "^5.2.1"
   },
   "peerDependencies": {
-    "expo-constants": "^5.0.1",
+    "expo-constants": "~16.0.2",
     "react": "16.5.2",
     "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz"
   },
@@ -36,6 +36,6 @@
     "@types/expo": "^32.0.10",
     "@types/react-native": "^0.57.43",
     "rimraf": "^2.6.3",
-    "typescript": "^3.4.3"
+    "typescript": "~5.3.3"
   }
 }
