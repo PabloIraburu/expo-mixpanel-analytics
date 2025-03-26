@@ -105,27 +105,27 @@ export class ExpoMixpanelAnalytics implements MixpanelAnalyticsMethods {
     } catch {}
   }
 
-  people_set(props) {
+  people_set(props: any): any {
     this._people("set", props);
   }
 
-  people_set_once(props) {
+  people_set_once(props: any) {
     this._people("set_once", props);
   }
 
-  people_unset(props) {
+  people_unset(props: any) {
     this._people("unset", props);
   }
 
-  people_increment(props) {
+  people_increment(props: any) {
     this._people("add", props);
   }
 
-  people_append(props) {
+  people_append(props: any) {
     this._people("append", props);
   }
 
-  people_union(props) {
+  people_union(props: any) {
     this._people("union", props);
   }
 
@@ -144,9 +144,9 @@ export class ExpoMixpanelAnalytics implements MixpanelAnalyticsMethods {
     }
   }
 
-  _people(operation, props) {
+  _people(operation: string, props: any) {
     if (this.userId) {
-      const data = {
+      const data: Record<string, string> = {
         $token: this.token,
         $distinct_id: this.userId
       };
@@ -156,7 +156,7 @@ export class ExpoMixpanelAnalytics implements MixpanelAnalyticsMethods {
     }
   }
 
-  _pushEvent(event) {
+  _pushEvent(event: any) {
     let data = {
       event: event.name,
       properties: {

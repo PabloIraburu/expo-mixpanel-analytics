@@ -3,7 +3,7 @@
     "sourceMap": true,
     "removeComments": true,
 
-    "noImplicitAny": false,
+    "noImplicitAny": true,
     "strict": true,
     "strictNullChecks": true,
     "strictFunctionTypes": true,
@@ -30,5 +30,5 @@
     "esModuleInterop": true,
     "declaration": true
   },
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "./dist/**/*"]
 }
