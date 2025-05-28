@@ -1,6 +1,6 @@
 {
   "name": "@pablo-iraburu/expo-mixpanel-analytics",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "Mixpanel integration for use with React Native apps built on Expo.",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
@@ -31,7 +31,7 @@
     "expo-device": "^7.0.2"
   },
   "peerDependencies": {
-    "react": "18.2.0",
+    "react": "^18.2.0",
     "react-native": "0.74.5"
   },
   "devDependencies": {
